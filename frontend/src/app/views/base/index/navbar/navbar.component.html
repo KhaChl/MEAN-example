@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- Navbar content -->
+    <div class="container">
+        <a class="navbar-brand" routerLink='/'>Angular-Nodejs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <ng-container *ngIf='authService.isAuthenticated(); else signout'>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink='signin' routerLinkActive='active'>Ingresar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink='signup' routerLinkActive='active'>Registrar</a>
+                    </li>
+                </ng-container>
+                <ng-template #signout>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink='product' routerLinkActive='active'>Productos</a>
+                    </li>
+                    <li class="nav-item" *ngIf='authService.isAdmin()'>
+                        <a class="nav-link" routerLink='manangement' routerLinkActive='active'>Administrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink='user' routerLinkActive='active'>Mis datos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)='authService.logout()' style="cursor: pointer;">Desconectar</a>
+                    </li>
+                </ng-template>
+            </ul>
+        </div>
+    </div>
+</nav>

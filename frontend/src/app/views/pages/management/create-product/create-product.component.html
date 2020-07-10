@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-md-9 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                Crear producto
+            </div>
+            <div class="card-body">
+                <form [formGroup]='product' (ngSubmit)='createProduct()'>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Nombre</span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="name" placeholder="Nombre">
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                        <div *ngIf="product.get('name').invalid && product.get('name').touched"
+                            class="text-danger small">
+                            <div *ngIf="product.get('name').errors.required">
+                                Nombre es requerido.
+                            </div>
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Descripción</span>
+                            </div>
+                            <textarea type="text" rows="10" class="form-control" formControlName="description"
+                                placeholder="Descripción"></textarea>
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                        <div *ngIf="product.get('description').invalid && product.get('description').touched"
+                            class="text-danger small">
+                            <div *ngIf="product.get('description').errors.required">
+                                Descripcion es requerida.
+                            </div>
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Link imagen</span>
+                            </div>
+                            <input type="url" class="form-control" formControlName="imagePath" placeholder="Link">
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                        <div *ngIf="product.get('imagePath').invalid && product.get('imagePath').touched"
+                            class="text-danger small">
+                            <div *ngIf="product.get('imagePath').errors.required">
+                                Imagen es requerida.
+                            </div>
+                            <div *ngIf="product.get('imagePath').errors.pattern">
+                                Formato invalido.
+                            </div>
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Precio</span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="price" placeholder="Precio">
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                        <div *ngIf="product.get('price').invalid && product.get('price').touched"
+                            class="text-danger small">
+                            <div *ngIf="product.get('price').errors.required">
+                                Precio es requerido.
+                            </div>
+                            <div *ngIf="product.get('price').errors.pattern">
+                                Solo numeros.
+                            </div>
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Stock</span>
+                            </div>
+                            <input type="text" class="form-control" formControlName="stock" placeholder="stock">
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                        <div *ngIf="product.get('stock').invalid && product.get('stock').touched"
+                            class="text-danger small">
+                            <div *ngIf="product.get('stock').errors.required">
+                                Stock es requerido.
+                            </div>
+                            <div *ngIf="product.get('stock').errors.pattern">
+                                Solo numeros.
+                            </div>
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                    </div>
+                    <button type="submit" [disabled]='!product.valid' class="btn btn-primary float-right">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

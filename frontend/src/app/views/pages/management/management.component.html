@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row justify-content-between mb-4">
+        <div class="col-4">
+            <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        </div>
+        <div class="col-4">
+            <a class="btn btn-primary float-right" routerLink='create-product'>Crear producto</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-lg-4 mb-4" *ngFor="let product of productsList | filter:term">
+            <div class="card" style="width: 17rem;">
+                <img [src]="product.imagePath" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Precio: {{product.price}}</li>
+                    <li class="list-group-item">Stock: {{product.stock}} </li>
+                </ul>
+                <div class="card-body">
+                    <div class="btn-group">
+                        <a routerLink="edit-product/{{product._id}}" class="btn btn-warning">Editar</a>
+                        <a (click)="deleteProduct(product._id)" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

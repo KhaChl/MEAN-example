@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                Ingresar
+            </div>
+            <div class="card-body">
+                <!-- mensaje de error api -->
+                <div class="text-danger" *ngIf="err">
+                    {{err}}
+                </div>
+                <!-- mensaje de error api -->
+                <form [formGroup]='user' (ngSubmit)='signIn()'>
+                    <div class="form-group">
+                        <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                        <!-- Mensaje de error validacion -->
+                        <div *ngIf="user.get('email').invalid && user.get('email').touched" class="text-danger small">
+                            <div *ngIf="user.get('email').errors.required">
+                                Email es requerido.
+                            </div>
+                            <div *ngIf="user.get('email').errors.email">
+                                Formato invalido
+                            </div>
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+                        <!-- Mensaje de error validacion -->
+                        <div *ngIf="user.get('password').invalid && user.get('password').touched"
+                            class="text-danger small">
+                            <div *ngIf="user.get('password').errors.required">
+                                Contraseña requerida.
+                            </div>
+                            <div *ngIf="user.get('password').errors.minlength">
+                                Contreseña debe contener minimo 5 caracteres.
+                            </div>
+                        </div>
+                        <!-- Mensaje de error validacion -->
+                    </div>
+                    <button type="submit" [disabled]="!user.valid" class="btn btn-primary btn-block">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
